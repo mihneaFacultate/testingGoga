@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Rooms</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+  <div><h2>Manage Rooms</h2></div>
+  <div class="m-2">
+    <a class="h3" th:href="@{/rooms/new}">Add a new room</a>
+  </div>
+
+  <div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+  </div>
+
+  <div>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Room Name</th>
+        <th>Details</th>
+        <th>Price</th>
+        <th>Persons per room</th>
+        <th>Availability</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="room : ${listRooms}">
+        <tr>
+          <td>[[${room.id}]]</td>
+          <td>[[${room.roomName}]]</td>
+          <td>[[${room.details}]]</td>
+          <td>[[${room.price}]]</td>
+          <td>[[${room.roomNumber}]]</td>
+          <td>[[${room.freeRoom}]]</td>
+          <td>
+            <a class="h4 mr-3" th:href="@{'/rooms/edit/' + ${room.id}}">Edit</a>
+            <a class="h4 mr-3" th:href="@{'/rooms/delete/' + ${room.id}}">Delete</a>
+          </td>
+        </tr>
+      </th:block>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
